@@ -1,0 +1,20 @@
+.map-container-section {
+    overflow:hidden;
+    padding-bottom:60.25%;
+    position:relative;
+    height:0;
+}
+.map-container-section iframe {
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+nav{
+    margin-bottom: 20px;
+}
+#contact{
+    margin-top: 10px;
+    width: 50%;
+}
