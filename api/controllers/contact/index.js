@@ -22,7 +22,7 @@ router.route('/')
             mensaje: req.body.mensaje,
             date: dateUtilities.getDate()
         };
-        //llamado a guardar tweet
+        //llamado a guardar 
         const object = new Contact(contact);
         object.save()
         .then(()=>{
