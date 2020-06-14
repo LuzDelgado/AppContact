@@ -23,13 +23,14 @@ router.route('/')
             date: dateUtilities.getDate()
         };
         //llamado a guardar tweet
-        const object = new COntact(contact);
+        const object = new Contact(contact);
         object.save()
         .then(()=>{
             res.status(200).send({message: 'El contacto ha sido creado'});
         });
     })
     .put((req, res)=>{
+        
         res.send(`Actualizar el contact`);
     });
 

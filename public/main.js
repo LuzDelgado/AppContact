@@ -1,16 +1,19 @@
-const newTweet = () => {
+const newContact = () => {
     //se construye el objeto que se enviará al API
-    const tweet = {
-        content: document.getElementById('content').value,
-        userId: 1
+    const contact = {
+        nombre: document.getElementById('nombre').value,
+        correo: document.getElementById('correo').value,
+        telefono: document.getElementById('telefono').value,
+        pais: document.getElementById('pais').value,
+        mensaje: document.getElementById('mensaje').value        
     };
-    if(tweet.content!==''){
+    if(contact.nombre!==''){
         //se define la ruta hacia donde se enviará la petición
-        const url = '/api/tweets';
+        const url = '/api/contact';
         //se hace la petición con Fetch
         fetch(url, {
             method: 'POST', //se define que es de tipo POST 
-            body: JSON.stringify(tweet), //se convierte en String el objeto que se va a enviar
+            body: JSON.stringify(contact), //se convierte en String el objeto que se va a enviar
             headers:{
             'Content-Type': 'application/json'
             }
@@ -20,25 +23,29 @@ const newTweet = () => {
         .catch(error => console.error('Error:', error))
         //respuesta exitosa
         .then(response => {
-            getTweets();
-            document.getElementById('content').value = '';
+            getContacts();            
+            document.getElementById('nombre').value = '';
+            document.getElementById('correo').value = '';
+            document.getElementById('telefono').value = '';
+            document.getElementById('pais').value = '';
+            document.getElementById('mensaje').value = '';    
         });
     }    
 };
 
-const getTweets = () => {
-    const url = '/api/tweets';
+const getContacts = () => {
+    const url = '/api/contact';
     fetch(url)
     .then(res => res.json())
     .then(response => {
         //se recibe el array de respuesta, se recorre y se arma un string 
         //para mostrar el resultado
-        const html = response.map(tweet => {
-           return `<li class="list-group-item">${tweet.content}<br /><small>${tweet.date}</small></li>`
+        const html = response.map(contact => {
+           return `<li class="list-group-item">${contact.nombre}<br /><small>${contact.correo}</small></li>`
         }).join(" ");
         //el string construido se agrega en el div con id tweets
-        document.getElementById('tweets').innerHTML = `<ul class="list-group">
-                                                        <li class="list-group-item active">Tweets</li>
+        document.getElementById('contact').innerHTML = `<ul class="list-group">
+                                                        <li class="list-group-item active">Contactos</li>
                                                         ${html}
                                                         </ul>`;
     });

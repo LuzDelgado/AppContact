@@ -1,20 +1,36 @@
-.map-container-section {
-    overflow:hidden;
-    padding-bottom:60.25%;
-    position:relative;
-    height:0;
-}
-.map-container-section iframe {
-    left:0;
-    top:0;
-    height:100%;
-    width:100%;
-    position:absolute;
-}
-nav{
-    margin-bottom: 20px;
-}
-#contact{
+body{
     margin-top: 10px;
-    width: 50%;
+}
+
+.container {
+    height: 800px;    
+} 
+
+.box {
+ height: 75%;
+ width: 75%;
+ background: "F0F0F0";
+ margin: 10px;
+}
+
+.box_in {
+    height: 50%;
+    width: 75%;
+    background: "F0F0F0";
+    margin: 10px;
+}
+
+.google-maps {
+position: relative;
+padding-bottom: 50%; // This is the aspect ratio
+height: 0;
+overflow: hidden;
+}
+
+.google-maps iframe {
+position: absolute;
+top: 0;
+left: 0;
+width: 100% !important;
+height: 100% !important;
 }
