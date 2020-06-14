@@ -4,10 +4,9 @@ const newContact = () => {
         nombre: document.getElementById('nombre').value,
         correo: document.getElementById('correo').value,
         telefono: document.getElementById('telefono').value,
-        pais: document.getElementById('pais').value,
-        mensaje: document.getElementById('mensaje').value        
+        pais: document.getElementById('pais').value
     };
-    if(contact.nombre!==''){
+    if(contact.nombre!=='' && contact.correo!=='') {
         //se define la ruta hacia donde se enviará la petición
         const url = '/api/contact';
         //se hace la petición con Fetch
@@ -23,16 +22,41 @@ const newContact = () => {
 
         .catch(error => console.error('Error:', error))
         //respuesta exitosa
-        .then(response => {
-           // getContacts();            
-            //document.getElementById('nombre').value = '';
-            //document.getElementById('correo').value = '';
-            //document.getElementById('telefono').value = '';
-            //document.getElementById('pais').value = '';
-            //document.getElementById('mensaje').value = '';    
+        .then(response => {     
+            document.getElementById('nombre').value = '';
+            document.getElementById('correo').value = '';
+            document.getElementById('telefono').value = '';
+            document.getElementById('pais').value = '';
         });
     }    
 };
+
+const newMessage = () => {
+    //se construye el objeto que se enviará al API
+    const menssage = {
+        mensaje: document.getElementById('mensaje').value        
+    };
+    if(message.mensaje!==''){
+        //se define la ruta hacia donde se enviará la petición
+        const url = '/api/message';
+        //se hace la petición con Fetch
+        fetch(url, {
+            method: 'POST', //se define que es de tipo POST 
+            body: JSON.stringify(message), //se convierte en String el objeto que se va a enviar
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())        
+        //respuesta con error
+        .catch(error => console.error('Error:', error))
+        //respuesta exitosa
+        .then(response => {
+            document.getElementById('mensaje').value = '';    
+        });
+    }    
+};
+
 
 const getContacts = () => {
     const url = '/api/contact';

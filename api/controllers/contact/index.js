@@ -19,7 +19,6 @@ router.route('/')
             telefono: req.body.telefono,
             correo: req.body.correo,
             pais: req.body.pais,
-            mensaje: req.body.mensaje,
             date: dateUtilities.getDate()
         };
         Contact.find({nombre: contact.nombre})
