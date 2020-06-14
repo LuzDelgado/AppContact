@@ -1,9 +1,9 @@
 /* Mapeo de Tabla de schema de base de datos*/
-/* formato de la informacion de como va ser guardada */
-
+/*models/contact*/
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const collection = 'contactos';
 const contactSchema = new Schema({
     nombre:{
         type: String,
@@ -20,17 +20,11 @@ const contactSchema = new Schema({
     pais:{
         type: String,
         required: false
-    },
-    mensaje:{
-        type: String,
-        required: true
-    },
-    date:{
-        type: String,
-        required: true
     }
+}, {
+    timestamps: true
 });
 
-const Contact = mongoose.model('contactos', contactSchema);
+const Contact = mongoose.model(collection, contactSchema);
 
 module.exports = Contact;

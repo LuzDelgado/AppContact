@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Contact = require('./../../models/contact')
+const Contact = require('./../../models/contact');
+const Message = require('./../../models/message');
 
-//referencio el móudlo que contiene la función para obtener la fecha
-const dateUtilities = require('../../utilities/date');
+const dateUtilities = require('./../../utilities/date');
 
 router.route('/')
     .get((req, res)=>{
@@ -22,24 +22,21 @@ router.route('/')
             mensaje: req.body.mensaje,
             date: dateUtilities.getDate()
         };
-        //llamado a guardar 
-        const object = new Contact(contact);
-        object.save()
-        .then(()=>{
-            res.status(200).send({message: 'El contacto ha sido creado'});
-        });
+        Contact.find({nombre: contact.nombre})
+        .then(contact=>{
+            if(contact.length>0){
+                
+            }else{
+                const object = new Contact(contact);
+                object.save()
+                .then(()=>{
+                    res.status(200).send({message: 'El contacto ha sido creado'});
+                });
+            }    
+        });        
     })
-    .put((req, res)=>{
-        
+    .put((req, res)=>{        
         res.send(`Actualizar el contact`);
-    });
-
-router.route('/:id')
-    .get((req, res)=>{
-        res.send(`Página del tweet ${req.params.id}`);
-    })
-    .delete((req, res)=>{
-        res.send(`Eliminar tweet ${req.params.id}`);
     });
 
 module.exports = router;

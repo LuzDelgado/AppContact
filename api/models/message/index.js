@@ -4,33 +4,19 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const collection = 'mensajes';
 const messageSchema = new Schema({
-    nombre:{
-        type: String,
-        required: true
-    },
-    correo:{
-        type: String,
-        required: true
-    },
-    telefono:{
-        type: String,
-        required: false
-    },
-    pais:{
-        type: String,
-        required: false
-    },
     mensaje:{
         type: String,
         required: true
     },
-    date:{
-        type: String,
-        required: true
+    contact: {
+        type: Schema.ObjectId, ref: 'contactos'
     }
+}, {
+    timestamps: true
 });
 
-const Contact = mongoose.model('contactos', contactSchema);
+const Message = mongoose.model(collection, messageSchema);
 
-module.exports = Contact;
+module.exports = Message;

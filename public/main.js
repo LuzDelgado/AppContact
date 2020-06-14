@@ -18,17 +18,18 @@ const newContact = () => {
             'Content-Type': 'application/json'
             }
         })
-        .then(res => res.json())
+        .then(res => res.json())        
         //respuesta con error
+
         .catch(error => console.error('Error:', error))
         //respuesta exitosa
         .then(response => {
-            getContacts();            
-            document.getElementById('nombre').value = '';
-            document.getElementById('correo').value = '';
-            document.getElementById('telefono').value = '';
-            document.getElementById('pais').value = '';
-            document.getElementById('mensaje').value = '';    
+           // getContacts();            
+            //document.getElementById('nombre').value = '';
+            //document.getElementById('correo').value = '';
+            //document.getElementById('telefono').value = '';
+            //document.getElementById('pais').value = '';
+            //document.getElementById('mensaje').value = '';    
         });
     }    
 };
